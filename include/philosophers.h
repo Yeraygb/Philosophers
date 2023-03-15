@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/14 15:12:16 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:43:45 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 typedef struct s_philo
 {
 	int				philo;
-	pthread_t		*thread;
-	pthread_mutex_t	mute;
-
+	struct s_philo	*next;
 }	t_philo;
 
 typedef struct s_program
@@ -32,10 +30,13 @@ typedef struct s_program
 	int				time_die;
 	int				time_eat;
 	int				time_sleep;
+	int				num_times_eat;
+	pthread_t		*thread;
+	pthread_mutex_t	mute;
+	pthread_mutex_t	print;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	dead;
 	pthread_mutex_t	sleep;
-	pthread_mutex_t	print;
 }	t_program;
 
 //---------- LIBFT ----------//
@@ -46,8 +47,9 @@ void	*ft_calloc(size_t count, size_t size);
 
 //---------- PHILOSOPHERS ----------//
 
-int		get_arguments(t_program *program, char **argv);
+int		get_arguments(t_program *data, char **argv);
+void	create_philoshoper(t_program *data, t_philo **philo);
+void	create_list(t_program *data, t_philo **philo, int bol, pthread_t thread);
 //void	exit_program(t_philo list, int numexit);
-t_philo	*create_philoshoper(t_program *program, t_philo **philo);
 
 #endif
