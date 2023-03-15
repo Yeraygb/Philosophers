@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/15 12:43:45 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:14:23 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_philo
 {
 	int				philo;
+	int				eat;
 	struct s_philo	*next;
 }	t_philo;
 
@@ -49,7 +50,7 @@ void	*ft_calloc(size_t count, size_t size);
 
 int		get_arguments(t_program *data, char **argv);
 void	create_philoshoper(t_program *data, t_philo **philo);
-void	create_list(t_program *data, t_philo **philo, int bol, pthread_t thread);
+void	create_list(t_program *data, t_philo *philo, int bol, pthread_t thread);
 //void	exit_program(t_philo list, int numexit);
 
 #endif

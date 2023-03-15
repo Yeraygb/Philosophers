@@ -6,13 +6,13 @@
 #    By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 13:39:06 by ygonzale          #+#    #+#              #
-#    Updated: 2023/03/15 12:56:39 by ygonzale         ###   ########.fr        #
+#    Updated: 2023/03/15 14:44:54 by ygonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philosophers
 SRC		=	philosophers.c \
-			src/utils.c
+			src/utils.c \
 			src/linked_list.c
 
 OBJS	=	$(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:42:14 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/15 12:43:22 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:16:21 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*worker(void *arg)
 	t_program	*data;
 
 	count = 0;
-	data = (t_philo *) arg;
+	data = (t_program *) arg;
 	pthread_mutex_lock(&(data->mute));
 	count++;
 	printf("Conteo actual: %d\n", count);
@@ -26,28 +26,29 @@ void	*worker(void *arg)
 	return (NULL);
 }
 
-void	create_list(t_program *data, t_philo **philo, int bol, pthread_t thread)
+void	create_list(t_philo *philo, int bol, int i)
 {
 	t_philo	*first;
 	t_philo	*aux;
 
 	first = philo;
 	aux = ft_calloc(1, sizeof(t_philo));
-	aux->philo = pthread_create(thread, NULL, worker, (void *)data);
+	//aux->philo = pthread_create(&thread, NULL, worker, (void *)data);
+	//printf("%d\n", aux->philo);
 	aux->next = 0;
 	if (bol == 0)
 	{
-		(*philo)->philo = aux->philo;
-		(*philo)->next = 0;
+		philo->philo = aux->philo;
+		philo->next = 0;
 		bol++;
 	}
 	else
 	{
-		while ((*philo) && (*philo)->next)
-			(*philo) = (*philo)->next;
-		(*philo)->next = aux;
+		while (philo && philo->next)
+			philo = philo->next;
+		philo->next = aux;
 	}
-	philo = aux;
+	philo = first;
 }
 
 void	create_philoshoper(t_program *data, t_philo **philo)
@@ -61,13 +62,13 @@ void	create_philoshoper(t_program *data, t_philo **philo)
 	{
 		if (boleana == 0)
 		{
-			create_list(data, philo, boleana, data->thread[i]);
+			create_list(*philo, boleana, i);
 			boleana++;
 			i++;
 		}
 		else
 		{
-			create_list(data, philo, boleana, data->thread[i]);
+			create_list(*philo, boleana, i);
 			i++;
 		}
 		i++;

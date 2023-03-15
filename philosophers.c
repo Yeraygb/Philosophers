@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/15 12:43:27 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:07:05 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	get_arguments(t_program *data, char **argv)
 	if (argv[5])
 		data->num_times_eat = ft_atoi(argv[5]);
 	else
-		data->num_times_eat = NULL;
+		data->num_times_eat = -1;
 	return (1);
 }
 
@@ -49,8 +49,17 @@ int	main(int argc, char **argv)
 		return (0);
 	pthread_mutex_init(&data.mute, NULL);
 	data.thread = (pthread_t *) malloc(sizeof(pthread_t) * data.num_philo);
-	if (!data.thread == 0)
+	if (!data.thread)
+		return (0);
+	philo = ft_calloc(1, sizeof(t_philo));
+	if (!philo)
 		return (0);
 	create_philoshoper(&data, &philo);
+	while (philo && philo->next)
+	{
+		//printf("hola\n");
+		printf("%d\n", philo->philo);
+		philo = philo->next;
+	}
 	return (0);
 }
