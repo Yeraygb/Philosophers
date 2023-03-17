@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:08:40 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/14 12:08:44 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:29:16 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(c, count * size);
 	return (c);
 }
+
+/*---------------------------------------------------------------------------
+* Funcion para convertir un char en int
+
+* @param {const char *str} el fichero que tiene que leer
+
+* @return {int}
+---------------------------------------------------------------------------*/
 
 int	ft_atoi(const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/15 15:07:05 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/17 14:43:16 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ int	get_arguments(t_program *data, char **argv)
 			return (0);
 		i++;
 	}
-	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->eat, NULL);
+	pthread_mutex_init(&data->mute, NULL);
 	pthread_mutex_init(&data->dead, NULL);
+	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->sleep, NULL);
 	data->num_philo = ft_atoi(argv[1]);
 	data->time_die = ft_atoi(argv[2]);
@@ -40,14 +41,14 @@ int	get_arguments(t_program *data, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_philo			*philo;
-	t_program		data;
+	t_philo		*philo;
+	t_program	data;
+	int			i;
 
-	if (argc != 5)
+	if (argc < 4 || argc > 5)
 		return (0);
 	if (get_arguments(&data, argv) == 0)
 		return (0);
-	pthread_mutex_init(&data.mute, NULL);
 	data.thread = (pthread_t *) malloc(sizeof(pthread_t) * data.num_philo);
 	if (!data.thread)
 		return (0);
@@ -55,11 +56,14 @@ int	main(int argc, char **argv)
 	if (!philo)
 		return (0);
 	create_philoshoper(&data, &philo);
-	while (philo && philo->next)
+	data.sphilo = philo;
+	i = 0;
+	while (data.num_philo > i)
+		execute_philosophers(data.thread[i++], &data);
+/* 	while (philo && philo->next)
 	{
-		//printf("hola\n");
-		printf("%d\n", philo->philo);
+		printf("filosofos: %d\n", philo->philo);
 		philo = philo->next;
-	}
+	} */
 	return (0);
 }

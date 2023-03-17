@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/15 15:17:23 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/17 14:49:01 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+
+//-------------- STRUCTS --------------//
 
 typedef struct s_philo
 {
@@ -32,6 +34,7 @@ typedef struct s_program
 	int				time_eat;
 	int				time_sleep;
 	int				num_times_eat;
+	t_philo	*sphilo;
 	pthread_t		*thread;
 	pthread_mutex_t	mute;
 	pthread_mutex_t	print;
@@ -40,17 +43,19 @@ typedef struct s_program
 	pthread_mutex_t	sleep;
 }	t_program;
 
-//---------- LIBFT ----------//
+//-------------- LIBFT --------------//
 
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 
-//---------- PHILOSOPHERS ----------//
+//---------- PHILOSOPHERS -----------//
 
 int		get_arguments(t_program *data, char **argv);
 void	create_philoshoper(t_program *data, t_philo **philo);
 void	create_list(t_philo *philo, int bol, int i);
+void	execute_philosophers(pthread_t thread, t_program *data);
+void	*worker(void *arg);
 //void	exit_program(t_philo list, int numexit);
 
 #endif

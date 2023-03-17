@@ -6,25 +6,11 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:42:14 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/15 15:16:21 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:32:27 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
-
-void	*worker(void *arg)
-{
-	int			count;
-	t_program	*data;
-
-	count = 0;
-	data = (t_program *) arg;
-	pthread_mutex_lock(&(data->mute));
-	count++;
-	printf("Conteo actual: %d\n", count);
-	pthread_mutex_unlock(&(data->mute));
-	return (NULL);
-}
 
 void	create_list(t_philo *philo, int bol, int i)
 {
@@ -33,8 +19,7 @@ void	create_list(t_philo *philo, int bol, int i)
 
 	first = philo;
 	aux = ft_calloc(1, sizeof(t_philo));
-	//aux->philo = pthread_create(&thread, NULL, worker, (void *)data);
-	//printf("%d\n", aux->philo);
+	aux->philo = i + 1;
 	aux->next = 0;
 	if (bol == 0)
 	{
@@ -58,7 +43,7 @@ void	create_philoshoper(t_program *data, t_philo **philo)
 
 	i = 0;
 	boleana = 0;
-	while (data->num_philo > i)
+	while (data->num_philo >= i)
 	{
 		if (boleana == 0)
 		{
@@ -71,6 +56,5 @@ void	create_philoshoper(t_program *data, t_philo **philo)
 			create_list(*philo, boleana, i);
 			i++;
 		}
-		i++;
 	}
 }
