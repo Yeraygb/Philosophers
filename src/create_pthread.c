@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/17 14:49:12 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/17 14:56:36 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,18 @@ void	*worker(void *arg)
 	return (NULL);
 }
 
-void	execute_philosophers(pthread_t thread, t_program *data)
+void	execute_philosophers(t_program *data)
 {
-	pthread_create(&thread, NULL, worker, (void *)data);
-	pthread_join(thread, NULL);
-	data->sphilo = data->sphilo->next;
+	int		i;
+	t_philo	*first;
+
+	first = data->sphilo;
+	i = 0;
+	while (data->num_philo > i)
+	{
+		pthread_create(&data->thread[i], NULL, worker, (void *)data);
+		pthread_join(data->thread[i], NULL);
+		i++;
+		data->sphilo = data->sphilo->next;
+	}
 }

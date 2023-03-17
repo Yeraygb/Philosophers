@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/17 14:49:01 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/17 14:55:13 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_program
 	int				time_eat;
 	int				time_sleep;
 	int				num_times_eat;
-	t_philo	*sphilo;
+	t_philo			*sphilo;
 	pthread_t		*thread;
 	pthread_mutex_t	mute;
 	pthread_mutex_t	print;
@@ -54,7 +54,7 @@ void	*ft_calloc(size_t count, size_t size);
 int		get_arguments(t_program *data, char **argv);
 void	create_philoshoper(t_program *data, t_philo **philo);
 void	create_list(t_philo *philo, int bol, int i);
-void	execute_philosophers(pthread_t thread, t_program *data);
+void	execute_philosophers(t_program *data);
 void	*worker(void *arg);
 //void	exit_program(t_philo list, int numexit);
 

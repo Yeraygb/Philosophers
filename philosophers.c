@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/17 14:43:16 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/17 14:56:51 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	main(int argc, char **argv)
 {
 	t_philo		*philo;
 	t_program	data;
-	int			i;
 
 	if (argc < 4 || argc > 5)
 		return (0);
@@ -57,9 +56,7 @@ int	main(int argc, char **argv)
 		return (0);
 	create_philoshoper(&data, &philo);
 	data.sphilo = philo;
-	i = 0;
-	while (data.num_philo > i)
-		execute_philosophers(data.thread[i++], &data);
+	execute_philosophers(&data);
 /* 	while (philo && philo->next)
 	{
 		printf("filosofos: %d\n", philo->philo);
