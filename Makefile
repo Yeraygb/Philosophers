@@ -6,7 +6,7 @@
 #    By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 13:39:06 by ygonzale          #+#    #+#              #
-#    Updated: 2023/03/17 12:00:14 by ygonzale         ###   ########.fr        #
+#    Updated: 2023/03/20 10:54:48 by ygonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ OBJS	=	$(SRC:.c=.o)
 FLAGS	=	gcc -Wall -Werror -Wextra -g3 -fsanitize=address 
 
 #Windows
-FLAGS	=	gcc -Wall -Werror -Wextra -std=c11 -g -D_REENTRANT
-LDLIBS	=	-lpthread
+#FLAGS	=	gcc -Wall -Werror -Wextra -std=c11 -g -D_REENTRANT
+#LDLIBS	=	-lpthread
 
 all: $(NAME)
 
@@ -30,8 +30,8 @@ $(NAME): $(OBJS)
 	@$(FLAGS) $(LINKS) $(SRC) -o philosophers
 
 #Windows
-$(NAME): $(OBJS)
-	@$(FLAGS) $(LINKS) $(SRC) -o philosophers $(LDLIBS)
+#$(NAME): $(OBJS)
+#	@$(FLAGS) $(LINKS) $(SRC) -o philosophers $(LDLIBS)
 
 %.o : %.c
 	$(FLAGS) -c $< -o $@

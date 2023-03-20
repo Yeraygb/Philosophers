@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/17 14:55:13 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:53:56 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_philo
 {
 	int				philo;
 	int				eat;
-	pthread_mutex_t *forkright;
-	pthread_mutex_t *forkrleft;
+	pthread_mutex_t	forkright;
+	pthread_mutex_t	forkrleft;
 	struct s_philo	*next;
 }	t_philo;
 
@@ -58,6 +58,7 @@ void	create_philoshoper(t_program *data, t_philo **philo);
 void	create_list(t_philo *philo, int bol, int i);
 void	execute_philosophers(t_program *data);
 void	*worker(void *arg);
+void	init_forks(t_philo **philo);
 //void	exit_program(t_philo list, int numexit);
 
 #endif
