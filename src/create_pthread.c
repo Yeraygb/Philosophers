@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/20 11:45:21 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:35:34 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@ void	*worker(void *arg)
 	t_program	*data;
 
 	data = (t_program *) arg;
-	printf("Filosofo: %d, esta pensando...\n", data->sphilo->philo);
-	if (data->sphilo->philo % 2 == 0)
+	while (1)
 	{
+		printf("%lld, %d, is thinking...\n", \
+		ft_time(data->start_time), data->sphilo->philo);
 		pthread_mutex_lock(&(data->sphilo->forkright));
-		pthread_mutex_lock(&(data->sphilo->forkrleft));
-		printf("Filosofo: %d, esta comiendo\n", data->sphilo->philo);
+		if (pthread_mutex_lock(&(data->sphilo->forkrleft)) == 0)
+		{
+			printf("%lld, %d, is eating\n", \
+			ft_time(data->start_time), data->sphilo->philo);
+			pthread_mutex_unlock(&(data->sphilo->forkrleft));
+		}
 		pthread_mutex_unlock(&(data->sphilo->forkright));
-		pthread_mutex_unlock(&(data->sphilo->forkrleft));
 	}
 	return (NULL);
 }

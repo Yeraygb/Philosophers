@@ -6,11 +6,13 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:08:40 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/17 12:29:16 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:05:03 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
+#include <sys/time.h>
+
 /* 
 void exit_program(t_list list, int numexit);
 {
@@ -74,4 +76,15 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sig * num);
+}
+
+long long	ft_time(struct timeval starttime)
+{
+	long long		time;
+	struct timeval	actual_time;
+
+	gettimeofday(&actual_time, NULL);
+	time = (actual_time.tv_sec * 1000) + (actual_time.tv_usec / 1000);
+	time = time - (starttime.tv_sec * 1000) + (starttime.tv_usec / 1000);
+	return (time);
 }

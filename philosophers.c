@@ -6,11 +6,12 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/20 11:14:31 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:16:09 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philosophers.h"
+#include <sys/time.h>
 
 int	get_arguments(t_program *data, char **argv)
 {
@@ -41,13 +42,14 @@ int	get_arguments(t_program *data, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_philo		*philo;
-	t_program	data;
+	t_philo			*philo;
+	t_program		data;
 
 	if (argc < 4 || argc > 5)
 		return (0);
 	if (get_arguments(&data, argv) == 0)
 		return (0);
+	gettimeofday(&data.start_time, NULL);
 	data.thread = (pthread_t *) malloc(sizeof(pthread_t) * data.num_philo);
 	if (!data.thread)
 		return (0);
