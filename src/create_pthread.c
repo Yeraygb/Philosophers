@@ -41,4 +41,28 @@ void	execute_philosophers(t_program *data)
 		i++;
 		data->sphilo = data->sphilo->next;
 	}
+	data->sphilo = first;
+}
+
+void	init_forks(t_philo *philo)
+{
+	t_philo	*first;
+	t_philo	*aux;
+
+	aux = philo;
+	first = philo;
+	while (philo&& philo->next)
+	{
+		pthread_mutex_init(&philo->forkright, NULL);
+		philo = philo->next;
+	}
+	aux->forkrleft = philo->forkright;
+	philo = first;
+	while (philo&& philo->next)
+	{
+		philo->next->forkrleft = philo->forkright;
+		philo = philo->forkright;
+	}
+	philo = first;
+	philo->forkrleft = aux->forkrleft;
 }

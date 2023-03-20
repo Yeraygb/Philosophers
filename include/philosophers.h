@@ -24,6 +24,8 @@ typedef struct s_philo
 {
 	int				philo;
 	int				eat;
+	pthread_mutex_t *forkright;
+	pthread_mutex_t *forkrleft;
 	struct s_philo	*next;
 }	t_philo;
 

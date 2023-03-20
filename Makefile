@@ -19,12 +19,19 @@ SRC		=	philosophers.c \
 OBJS	=	$(SRC:.c=.o)
 FLAGS	=	gcc -Wall -Werror -Wextra -g3 -fsanitize=address 
 
+#Windows
+FLAGS	=	gcc -Wall -Werror -Wextra -std=c11 -g -D_REENTRANT
+LDLIBS	=	-lpthread
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo ✅ "\033[92;3;4mcompilation done\033[0m" ✅
 	@$(FLAGS) $(LINKS) $(SRC) -o philosophers
+
+#Windows
+$(NAME): $(OBJS)
+	@$(FLAGS) $(LINKS) $(SRC) -o philosophers $(LDLIBS)
 
 %.o : %.c
 	$(FLAGS) -c $< -o $@

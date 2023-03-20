@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/17 14:56:51 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:07:05 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	get_arguments(t_program *data, char **argv)
 			return (0);
 		i++;
 	}
-	pthread_mutex_init(&data->eat, NULL);
-	pthread_mutex_init(&data->mute, NULL);
-	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->eat, NULL);
+	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_init(&data->sleep, NULL);
 	data->num_philo = ft_atoi(argv[1]);
 	data->time_die = ft_atoi(argv[2]);
@@ -55,6 +54,7 @@ int	main(int argc, char **argv)
 	if (!philo)
 		return (0);
 	create_philoshoper(&data, &philo);
+	init_forks(&philo);
 	data.sphilo = philo;
 	execute_philosophers(&data);
 /* 	while (philo && philo->next)
