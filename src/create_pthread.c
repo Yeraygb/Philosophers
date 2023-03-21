@@ -22,19 +22,20 @@ void	*worker(void *arg)
 	t_program	*data;
 
 	data = (t_program *) arg;
-	while (1)
+	printf("%lld, %d, is thinking...\n", \
+	ft_time(data->start_time), data->sphilo->philo);
+	pthread_mutex_lock(&(data->sphilo->forkright));
+	pthread_mutex_lock(&(data->sphilo->forkleft));
+	printf("%lld, %d, is eating\n", \
+	ft_time(data->start_time), data->sphilo->philo);
+	pthread_mutex_unlock(&(data->sphilo->forkleft));
+	pthread_mutex_unlock(&(data->sphilo->forkright));
+/* 	while (1)
 	{
-		printf("%lld, %d, is thinking...\n", \
-		ft_time(data->start_time), data->sphilo->philo);
-		pthread_mutex_lock(&(data->sphilo->forkright));
-		if (pthread_mutex_lock(&(data->sphilo->forkrleft)) == 0)
-		{
-			printf("%lld, %d, is eating\n", \
-			ft_time(data->start_time), data->sphilo->philo);
-			pthread_mutex_unlock(&(data->sphilo->forkrleft));
-		}
-		pthread_mutex_unlock(&(data->sphilo->forkright));
 	}
+	if (pthread_mutex_lock(&(data->sphilo->forkrleft)) == 0)
+	{
+	} */
 	return (NULL);
 }
 
@@ -60,20 +61,20 @@ void	init_forks(t_philo **philo)
 	t_philo	*first;
 	t_philo	*aux;
 
-	aux = (*philo);
 	first = (*philo);
 	while ((*philo) && (*philo)->next)
 	{
 		pthread_mutex_init(&(*philo)->forkright, NULL);
 		(*philo) = (*philo)->next;
 	}
-	aux->forkrleft = (*philo)->forkright;
+	aux = (*philo);
+	//aux->forkrleft = (*philo)->forkright;
 	(*philo) = first;
 	while ((*philo) && (*philo)->next)
 	{
-		(*philo)->next->forkrleft = (*philo)->forkright;
+		(*philo)->next->forkleft = (*philo)->forkright;
 		(*philo) = (*philo)->next;
 	}
 	(*philo) = first;
-	(*philo)->forkrleft = aux->forkrleft;
+	(*philo)->forkleft = aux->forkleft;
 }

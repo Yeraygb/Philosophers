@@ -84,7 +84,6 @@ long long	ft_time(struct timeval starttime)
 	struct timeval	actual_time;
 
 	gettimeofday(&actual_time, NULL);
-	time = (actual_time.tv_sec * 1000) + (actual_time.tv_usec / 1000);
-	time = time - (starttime.tv_sec * 1000) + (starttime.tv_usec / 1000);
+	time = (actual_time.tv_sec * 1000) + (actual_time.tv_usec / 1000) - (starttime.tv_sec * 1000) + (starttime.tv_usec / 1000);
 	return (time);
 }
