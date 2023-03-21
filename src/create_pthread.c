@@ -30,12 +30,6 @@ void	*worker(void *arg)
 	ft_time(data->start_time), data->sphilo->philo);
 	pthread_mutex_unlock(&(data->sphilo->forkleft));
 	pthread_mutex_unlock(&(data->sphilo->forkright));
-/* 	while (1)
-	{
-	}
-	if (pthread_mutex_lock(&(data->sphilo->forkrleft)) == 0)
-	{
-	} */
 	return (NULL);
 }
 
