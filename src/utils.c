@@ -13,11 +13,21 @@
 #include "../include/philosophers.h"
 #include <sys/time.h>
 
-/* 
-void exit_program(t_list list, int numexit);
+
+void exit_program(t_program *data, t_philo **philo)
 {
-    exit(numexit);
-} */
+	t_philo	*aux;
+
+	free(data->thread);
+	while ((*philo))
+	{
+		aux = (*philo);
+		(*philo) = (*philo)->next;
+		free(aux);
+	}
+	//free((*philo));
+	//exit(0);
+}
 
 void	ft_bzero(void *s, size_t n)
 {

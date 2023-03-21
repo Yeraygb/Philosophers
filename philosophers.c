@@ -53,12 +53,13 @@ int	main(int argc, char **argv)
 	data.thread = (pthread_t *) malloc(sizeof(pthread_t) * data.num_philo);
 	if (!data.thread)
 		return (0);
-	philo = ft_calloc(1, sizeof(t_philo));
-	if (!philo)
-		return (0);
-	create_philoshoper(&data, &philo);
+	philo = create_philoshoper(&data);
+	pthread_mutex_lock(&(data.mute));
 	init_forks(&philo);
 	data.sphilo = philo;
 	execute_philosophers(&data);
+	pthread_mutex_unlock(&(data.mute));
+	exit_program(&data, &philo);
+	free(philo);
 	return (0);
 }

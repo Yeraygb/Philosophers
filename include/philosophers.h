@@ -56,12 +56,12 @@ void		*ft_calloc(size_t count, size_t size);
 //---------- PHILOSOPHERS -----------//
 
 int			get_arguments(t_program *data, char **argv);
-void		create_philoshoper(t_program *data, t_philo **philo);
-void		create_list(t_philo *philo, int bol, int i);
+t_philo		*create_philoshoper(t_program *data);
+void		create_list(t_philo **philo, int bol, int i);
 void		execute_philosophers(t_program *data);
 void		*worker(void *arg);
 void		init_forks(t_philo **philo);
 long long	ft_time(struct timeval startime);
-//void	exit_program(t_philo list, int numexit);
+void		exit_program(t_program *data, t_philo **philo);
 
 #endif
