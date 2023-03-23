@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/23 11:38:14 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/23 11:56:39 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,19 @@ void	*worker(void *arg)
 		sleep(rand() % 5);
 		pthread_mutex_lock(&(data->mute));
 		pthread_mutex_lock(&(data->sphilo->forkright));
+		printf("%lld, %d, ha cogido el tenedor derecho\n", \
+		ft_time(data->start_time), data->sphilo->philo);
 		pthread_mutex_lock(&(data->sphilo->forkleft));
+		printf("%lld, %d, ha cogido el tenedor izq\n", \
+		ft_time(data->start_time), data->sphilo->philo);
 		pthread_mutex_unlock(&(data->mute));
 		printf("%lld, %d, is eating\n", \
 		ft_time(data->start_time), data->sphilo->philo);
 		sleep(rand() % 5);
 		pthread_mutex_unlock(&(data->sphilo->forkleft));
 		pthread_mutex_unlock(&(data->sphilo->forkright));
+		printf("%lld, %d, ha liberado el tenedor\n", \
+		ft_time(data->start_time), data->sphilo->philo);
 	}
 	return (NULL);
 }
