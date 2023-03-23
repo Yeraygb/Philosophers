@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:42:14 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/23 12:22:07 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:30:42 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	create_list(t_philo **philo, int bol, int i)
 
 	first = (*philo);
 	aux = ft_calloc(1, sizeof(t_philo));
-	aux->philo = i;
-	//aux->philo = i + 1;
+	aux->philo = i + 1;
 	aux->next = 0;
 	if (bol == 0)
 	{

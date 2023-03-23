@@ -6,16 +6,11 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/23 12:14:52 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:38:15 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
-
-/* void	philo_eating(t_program data)
-{
-	
-} */
 
 void	*worker(void *arg)
 {
@@ -39,9 +34,9 @@ void	*worker(void *arg)
 		ft_time(data->start_time), data->sphilo->philo);
 		sleep(rand() % 5);
 		pthread_mutex_unlock(&(data->sphilo->forkleft));
-		pthread_mutex_unlock(&(data->sphilo->forkright));
-		printf("%lld, %d, ha liberado el tenedor\n", \
+		printf("%lld, %d, ha liberado el tenedor derecho\n", \
 		ft_time(data->start_time), data->sphilo->philo);
+		pthread_mutex_unlock(&(data->sphilo->forkright));
 	}
 	return (NULL);
 }
