@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/20 13:35:34 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/23 11:38:14 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,21 @@ void	*worker(void *arg)
 	t_program	*data;
 
 	data = (t_program *) arg;
-	printf("%lld, %d, is thinking...\n", \
-	ft_time(data->start_time), data->sphilo->philo);
-	pthread_mutex_lock(&(data->sphilo->forkright));
-	pthread_mutex_lock(&(data->sphilo->forkleft));
-	printf("%lld, %d, is eating\n", \
-	ft_time(data->start_time), data->sphilo->philo);
-	pthread_mutex_unlock(&(data->sphilo->forkleft));
-	pthread_mutex_unlock(&(data->sphilo->forkright));
+	while (1)
+	{
+		printf("%lld, %d, is thinking...\n", \
+		ft_time(data->start_time), data->sphilo->philo);
+		sleep(rand() % 5);
+		pthread_mutex_lock(&(data->mute));
+		pthread_mutex_lock(&(data->sphilo->forkright));
+		pthread_mutex_lock(&(data->sphilo->forkleft));
+		pthread_mutex_unlock(&(data->mute));
+		printf("%lld, %d, is eating\n", \
+		ft_time(data->start_time), data->sphilo->philo);
+		sleep(rand() % 5);
+		pthread_mutex_unlock(&(data->sphilo->forkleft));
+		pthread_mutex_unlock(&(data->sphilo->forkright));
+	}
 	return (NULL);
 }
 
@@ -43,9 +50,14 @@ void	execute_philosophers(t_program *data)
 	while (data->num_philo > i)
 	{
 		pthread_create(&data->thread[i], NULL, worker, (void *)data);
-		pthread_join(data->thread[i], NULL);
 		i++;
 		data->sphilo = data->sphilo->next;
+	}
+	i = 0;
+	while (data->num_philo > i)
+	{
+		pthread_join(data->thread[i], NULL);
+		i++;
 	}
 	data->sphilo = first;
 }
@@ -62,7 +74,6 @@ void	init_forks(t_philo **philo)
 		(*philo) = (*philo)->next;
 	}
 	aux = (*philo);
-	//aux->forkrleft = (*philo)->forkright;
 	(*philo) = first;
 	while ((*philo) && (*philo)->next)
 	{

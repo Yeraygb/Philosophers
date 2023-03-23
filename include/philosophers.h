@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/20 12:55:05 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/23 11:40:46 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,21 @@ typedef struct s_program
 	pthread_mutex_t	sleep;
 }	t_program;
 
-//-------------- LIBFT --------------//
-
+//-------------- UTILS --------------//
+int			get_arguments(t_program *data, char **argv);
 int			ft_atoi(const char *str);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
-
-//---------- PHILOSOPHERS -----------//
-
-int			get_arguments(t_program *data, char **argv);
-t_philo		*create_philoshoper(t_program *data);
-void		create_list(t_philo **philo, int bol, int i);
-void		execute_philosophers(t_program *data);
-void		*worker(void *arg);
-void		init_forks(t_philo **philo);
 long long	ft_time(struct timeval startime);
 void		exit_program(t_program *data, t_philo **philo);
+
+//---------- CREATE PHILOSOPHERS -----------//
+t_philo		*create_philoshoper(t_program *data);
+void		create_list(t_philo **philo, int bol, int i);
+void		init_forks(t_philo **philo);
+
+//---------- PTHREAD -----------//
+void		execute_philosophers(t_program *data);
+void		*worker(void *arg);
 
 #endif

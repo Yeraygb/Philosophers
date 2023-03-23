@@ -6,27 +6,32 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:08:40 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/20 13:05:03 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/23 11:12:35 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 #include <sys/time.h>
 
-
-void exit_program(t_program *data, t_philo **philo)
+void	exit_program(t_program *data, t_philo **philo)
 {
+	int		i;
 	t_philo	*aux;
 
+	i = 0;
 	free(data->thread);
+	pthread_mutex_destroy(&data->mute);
+	while (data->num_philo > i)
+	{
+		pthread_mutex_destroy(&(*philo)->forkright);
+		i++;
+	}
 	while ((*philo))
 	{
 		aux = (*philo);
 		(*philo) = (*philo)->next;
 		free(aux);
 	}
-	//free((*philo));
-	//exit(0);
 }
 
 void	ft_bzero(void *s, size_t n)
@@ -94,6 +99,7 @@ long long	ft_time(struct timeval starttime)
 	struct timeval	actual_time;
 
 	gettimeofday(&actual_time, NULL);
-	time = (actual_time.tv_sec * 1000) + (actual_time.tv_usec / 1000) - (starttime.tv_sec * 1000) + (starttime.tv_usec / 1000);
+	time = (actual_time.tv_sec * 1000) + (actual_time.tv_usec / 1000) \
+	- (starttime.tv_sec * 1000) + (starttime.tv_usec / 1000);
 	return (time);
 }
