@@ -6,7 +6,7 @@
 #    By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 13:39:06 by ygonzale          #+#    #+#              #
-#    Updated: 2023/03/20 10:54:48 by ygonzale         ###   ########.fr        #
+#    Updated: 2023/03/24 14:00:18 by ygonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	philosophers
 SRC		=	philosophers.c \
 			src/utils.c \
 			src/linked_list.c \
-			src/create_pthread.c
+			src/create_pthread.c 
 
 OBJS	=	$(SRC:.c=.o)
 FLAGS	=	gcc -Wall -Werror -Wextra -g3 -fsanitize=address 

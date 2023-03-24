@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/23 11:12:43 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:33:25 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,12 @@ int	main(int argc, char **argv)
 	if (!data.thread)
 		return (0);
 	philo = create_philoshoper(&data);
-	free(data.thread);
-	init_forks(&philo);
+	//init_forks(&philo);
+	/* while (philo)
+	{
+		printf("%d\n", philo->philo);
+		philo = philo->next;
+	} */
 	data.sphilo = philo;
 	execute_philosophers(&data);
 	exit_program(&data, &philo);

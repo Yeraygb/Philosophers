@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/23 12:38:15 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:20:05 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,4 @@ void	execute_philosophers(t_program *data)
 		i++;
 	}
 	data->sphilo = first;
-}
-
-void	init_forks(t_philo **philo)
-{
-	t_philo	*first;
-	t_philo	*aux;
-
-	first = (*philo);
-	while ((*philo) && (*philo)->next)
-	{
-		pthread_mutex_init(&(*philo)->forkright, NULL);
-		(*philo) = (*philo)->next;
-	}
-	aux = (*philo);
-	(*philo) = first;
-	while ((*philo) && (*philo)->next)
-	{
-		(*philo)->next->forkleft = (*philo)->forkright;
-		(*philo) = (*philo)->next;
-	}
-	(*philo) = first;
-	(*philo)->forkleft = aux->forkleft;
 }

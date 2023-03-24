@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/23 12:13:59 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:57:07 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,11 @@ void		exit_program(t_program *data, t_philo **philo);
 //---------- CREATE PHILOSOPHERS -----------//
 
 t_philo		*create_philoshoper(t_program *data);
-void		create_list(t_philo **philo, int bol, int i);
-void		init_forks(t_philo **philo);
+void		create_list(t_philo **philo, int num_philos, int i);
+t_philo		*philo_node(int i);
+void		add_philo_node(t_philo **philo, t_philo *new_node);
+void		init_philo(t_philo **philo, int num_philos);
+//void		init_forks(t_philo **philo);
 
 //---------- PTHREAD -----------//
 
