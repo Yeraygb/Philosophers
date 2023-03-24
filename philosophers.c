@@ -44,9 +44,7 @@ int	main(int argc, char **argv)
 {
 	t_philo			*philo;
 	t_program		data;
-	int				i;
 
-	i = 0;
 	if (argc < 4 || argc > 5)
 		return (0);
 	if (get_arguments(&data, argv) == 0)
@@ -56,6 +54,7 @@ int	main(int argc, char **argv)
 	if (!data.thread)
 		return (0);
 	philo = create_philoshoper(&data);
+	free(data.thread);
 	init_forks(&philo);
 	data.sphilo = philo;
 	execute_philosophers(&data);

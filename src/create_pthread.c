@@ -57,7 +57,7 @@ void	execute_philosophers(t_program *data)
 	i = 0;
 	while (data->num_philo > i)
 	{
-		pthread_join(data->thread[i], NULL);
+		pthread_detach(data->thread[i]);
 		i++;
 	}
 	data->sphilo = first;

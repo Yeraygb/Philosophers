@@ -33,8 +33,8 @@ void	create_list(t_philo **philo, int bol, int i)
 		while ((*philo) && (*philo)->next)
 			(*philo) = (*philo)->next;
 		(*philo)->next = aux;
-		(*philo) = first;
 	}
+	(*philo) = first;
 }
 
 t_philo	*create_philoshoper(t_program *data)
