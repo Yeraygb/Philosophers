@@ -80,3 +80,59 @@ void	create_list(t_philo **philo, int num_philos, int i)
 	}
 	init_philo(philo, num_philos);
 }
+
+//-----------------------------------------------------------------------//
+
+void connect_forks(t_philo *philo)
+{
+	t_philo *lastnode;
+	t_philo *firstnode;
+	
+	firstnode = philo;
+	while(philo)
+		philo = philo->next;
+	lastnode = philo;
+	philo = firstnode;
+	while (philo && philo->next)
+	{
+		philo->next->forkleft = philo->forkright;
+		philo = philo->next;
+	}
+	philo = firstnode;
+	philo->forkleft = lastnode->forkright;
+}
+
+void create_node(t_philo **philo, int i, int bol)
+{
+	t_philo	*firstnode;
+	t_philo	*aux;
+
+	firstnode = (*philo);
+	aux = ft_calloc(1, sizeof(t_philo));
+	if (!aux)
+		return ;
+	aux->philo = i + 1;
+	aux->next = 0;
+	pthread_mutex_init(&(aux->forkright), NULL);
+	if (bol == 0)
+	{
+		(*philo)->philo = aux->philo;
+		(*philo)->next = 0;
+		free(aux);
+		bol++;
+	}
+	else
+	{
+		while ((*philo) && (*philo)->next)
+			(*philo) = (*philo)->next;
+		(*philo)->next = aux;
+	}
+	(*philo) = firstnode;
+}
+
+void	create_list(t_philo **philo, int bol, int i)
+{
+	create_node(philo, i, bol);
+	if (bol == i)
+		connect_forks(*philo);
+}
