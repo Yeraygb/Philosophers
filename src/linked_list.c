@@ -90,11 +90,6 @@ void	init_forks(t_philo **philo)
 }
  */
 
-void ini_forks()
-{
-
-}
-
 void	create_list(t_philo **philo, int bol, int i)
 {
 	t_philo	*firstnode;

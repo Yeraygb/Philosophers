@@ -48,17 +48,19 @@ void	execute_philosophers(t_program *data)
 
 	first = data->sphilo;
 	i = 0;
+	pthread_mutex_lock(&(data->mute));
 	while (data->num_philo > i)
 	{
 		pthread_create(&data->thread[i], NULL, worker, (void *)data);
+		pthread_detach(data->thread[i]);
 		i++;
 		data->sphilo = data->sphilo->next;
 	}
-	i = 0;
+	pthread_mutex_unlock(&(data->mute));
+/* 	i = 0;
 	while (data->num_philo > i)
 	{
-		pthread_detach(data->thread[i]);
 		i++;
-	}
+	} */
 	data->sphilo = first;
 }
