@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:42:14 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/28 14:02:28 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:07:25 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,22 +177,19 @@ void	create_list(t_philo **philo, int bol, int i)
 		connect_forks(*philo);
 }
 
-void create_philoshoper(t_philo **philo, t_program *data)
+void	create_philoshoper(t_philo **philo, t_program *data)
 {
 	int		i;
 	int		boleana;
-	//t_philo	*philo;
 
 	i = 0;
 	boleana = 0;
-	//philo = NULL;
-	// philo = ft_calloc(1, sizeof(t_philo));
-	// if (!philo)
-	// 	return (0);
+/* 	philo = NULL;
+	philo = ft_calloc(1, sizeof(t_philo));
+	if (!philo
+		return (0); */
 	while (data->num_philo > i)
 	{
-		// printf("%i: %i\n", i, boleana);
-		// printphilo(philo);
 		create_list(philo, boleana, i);
 		boleana++;
 		i++;

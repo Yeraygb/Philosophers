@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/28 14:53:43 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:07:49 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	get_arguments(t_program *data, char **argv)
 			return (0);
 		i++;
 	}
-	pthread_mutex_init(&data->print, NULL);
+/* 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->eat, NULL);
 	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_init(&data->sleep, NULL);
-	pthread_mutex_init(&data->mute, NULL);
+	pthread_mutex_init(&data->mute, NULL); */
 	data->num_philo = ft_atoi(argv[1]);
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
@@ -40,15 +40,15 @@ int	get_arguments(t_program *data, char **argv)
 	return (1);
 }
 
-void free_philos(t_philo *philo)
+void	free_philos(t_philo *philo)
 {
-	t_philo *tmp;
+	t_philo	*tmp;
 
 	while (philo)
 	{
 		tmp = philo;
 		philo = philo->next;
-		//pthread_mutex_destroy(&tmp->forkleft);
+		pthread_mutex_destroy(&tmp->forkleft);
 		pthread_mutex_destroy(&tmp->forkright);
 		free(tmp);
 	}
@@ -86,6 +86,5 @@ int	main(int argc, char **argv)
 	execute_philosophers(&data);*/
 	free_philos(philo);
 	exit_program(&data, &philo);
-	exit(0);
 	return (0);
 }
