@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/24 13:33:25 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:56:12 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,20 @@ int	get_arguments(t_program *data, char **argv)
 	return (1);
 }
 
+void free_philos(t_philo *philo)
+{
+	t_philo *tmp;
+
+	while (philo)
+	{
+		tmp = philo;
+		philo = philo->next;
+		//pthread_mutex_destroy(&tmp->forkleft);
+		pthread_mutex_destroy(&tmp->forkright);
+		free(tmp);
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_philo			*philo;
@@ -49,20 +63,28 @@ int	main(int argc, char **argv)
 		return (0);
 	if (get_arguments(&data, argv) == 0)
 		return (0);
+	philo = NULL;
 	gettimeofday(&data.start_time, NULL);
 	data.thread = (pthread_t *) malloc(sizeof(pthread_t) * data.num_philo);
 	if (!data.thread)
 		return (0);
-	philo = create_philoshoper(&data);
-	//init_forks(&philo);
-	/* while (philo)
+	create_philoshoper(&philo, &data);
+	while (philo)
 	{
 		printf("%d\n", philo->philo);
 		philo = philo->next;
+	}
+/* 	while (philo)
+	{
+		aux = (*philo);
+		(*philo) = (*philo)->next;
+		free(aux);
 	} */
-	data.sphilo = philo;
-	execute_philosophers(&data);
+	//printf("%d\n", philo->philo);
+	//init_forks(&philo);
+/* 	data.sphilo = philo;
+	execute_philosophers(&data);*/
+	free_philos(philo);
 	exit_program(&data, &philo);
-	free(philo);
 	return (0);
 }

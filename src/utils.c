@@ -6,32 +6,27 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:08:40 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/23 11:12:35 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:48:01 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
 #include <sys/time.h>
 
-void	exit_program(t_program *data, t_philo **philo)
+void	exit_program(t_program *data, __unused t_philo **philo)
 {
 	int		i;
-	t_philo	*aux;
+	//t_philo	*aux;
 
 	i = 0;
 	free(data->thread);
-	pthread_mutex_destroy(&data->mute);
+/* 	pthread_mutex_destroy(&data->mute);
 	while (data->num_philo > i)
 	{
 		pthread_mutex_destroy(&(*philo)->forkright);
 		i++;
-	}
-	while ((*philo))
-	{
-		aux = (*philo);
-		(*philo) = (*philo)->next;
-		free(aux);
-	}
+	} */
+
 }
 
 void	ft_bzero(void *s, size_t n)

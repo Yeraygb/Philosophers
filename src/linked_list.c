@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:42:14 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/24 14:00:57 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/28 14:02:28 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,9 @@ void	init_forks(t_philo **philo)
 	(*philo)->forkleft = lastnode->forkleft;
 }
  */
+//------------------------------------//
 
-void	create_list(t_philo **philo, int bol, int i)
+/* void	create_list(t_philo **philo, int bol, int i)
 {
 	t_philo	*firstnode;
 	t_philo	*aux;
@@ -128,24 +129,72 @@ void	create_list(t_philo **philo, int bol, int i)
 		(*philo) = firstnode;
 		(*philo)->forkleft = lastnode->forkright;
 	}
+} */
+
+void	create_node(t_philo **philo, int i)
+{
+	t_philo	*aux;
+	t_philo	*lastnode;
+
+	aux = ft_calloc(1, sizeof(t_philo));
+	if (!aux)
+		return ;
+	aux->philo = i + 1;
+	aux->next = 0;
+	pthread_mutex_init(&(aux->forkright), NULL);
+	if ((*philo) == NULL)
+	{
+		(*philo) = aux;
+	}
+	else
+	{
+		lastnode = (*philo);
+		while (lastnode->next != NULL)
+			lastnode = lastnode->next;
+		lastnode->next = aux;
+	}
 }
 
-t_philo	*create_philoshoper(t_program *data)
+void	connect_forks(t_philo *philo)
+{
+	t_philo	*lastnode;
+
+	lastnode = philo;
+	while (lastnode->next != NULL)
+		lastnode = lastnode->next;
+	while (philo->next != NULL)
+	{
+		philo->next->forkleft = philo->forkright;
+		philo = philo->next;
+	}
+	philo->forkleft = lastnode->forkright;
+}
+
+void	create_list(t_philo **philo, int bol, int i)
+{
+	create_node(philo, i);
+	if (bol == i)
+		connect_forks(*philo);
+}
+
+void create_philoshoper(t_philo **philo, t_program *data)
 {
 	int		i;
 	int		boleana;
-	t_philo	*philo;
+	//t_philo	*philo;
 
 	i = 0;
 	boleana = 0;
-	philo = ft_calloc(1, sizeof(t_philo));
-	if (!philo)
-		return (0);
+	//philo = NULL;
+	// philo = ft_calloc(1, sizeof(t_philo));
+	// if (!philo)
+	// 	return (0);
 	while (data->num_philo > i)
 	{
-		create_list(&philo, boleana, i);
+		// printf("%i: %i\n", i, boleana);
+		// printphilo(philo);
+		create_list(philo, boleana, i);
 		boleana++;
 		i++;
 	}
-	return (philo);
 }

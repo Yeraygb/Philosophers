@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:40:03 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/24 13:56:17 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/28 10:34:05 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ void	create_list(t_philo **philo, int num_philos, int i)
 
 //-----------------------------------------------------------------------//
 
-void connect_forks(t_philo *philo)
+void	connect_forks(t_philo *philo)
 {
-	t_philo *lastnode;
-	t_philo *firstnode;
-	
+	t_philo	*lastnode;
+	t_philo	*firstnode;
+
 	firstnode = philo;
-	while(philo)
+	while (philo)
 		philo = philo->next;
 	lastnode = philo;
 	philo = firstnode;
