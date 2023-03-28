@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/28 13:56:12 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/28 14:53:43 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int	main(int argc, char **argv)
 	execute_philosophers(&data);*/
 	free_philos(philo);
 	exit_program(&data, &philo);
+	exit(0);
 	return (0);
 }
