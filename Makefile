@@ -6,7 +6,7 @@
 #    By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 13:39:06 by ygonzale          #+#    #+#              #
-#    Updated: 2023/03/28 13:07:09 by ygonzale         ###   ########.fr        #
+#    Updated: 2023/03/29 13:11:02 by ygonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC		=	philosophers.c \
 			src/create_pthread.c 
 
 OBJS	=	$(SRC:.c=.o)
-FLAGS	=	gcc -Wall -Werror -Wextra -g3 #-fsanitize=address 
+FLAGS	=	gcc -Wall -Werror -Wextra -g3 -fsanitize=address 
 
 #Windows
 #FLAGS	=	gcc -Wall -Werror -Wextra -std=c11 -g -D_REENTRANT

@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/28 15:06:11 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:02:29 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,14 @@ int			ft_atoi(const char *str);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 long long	ft_time(struct timeval startime);
-void		exit_program(t_program *data, t_philo **philo);
+void		free_philos(t_philo *philo, t_program *data);
 
-//---------- CREATE PHILOSOPHERS -----------//
+//---------- CREATE LINKED LIST -----------//
 
-void		create_philoshoper(t_philo **philo, t_program *data);
+t_philo		*create_philoshoper(t_program *data);
 void		create_list(t_philo **philo, int bol, int i);
 void		create_node(t_philo **philo, int i);
-t_philo		*philo_node(int i);
-void		add_philo_node(t_philo **philo, t_philo *new_node);
-void		init_philo(t_philo **philo, int num_philos);
 void		connect_forks(t_philo *philo);
-//void		init_forks(t_philo **philo);
 
 //---------- PTHREAD -----------//
 
