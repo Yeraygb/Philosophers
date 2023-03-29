@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/29 13:10:56 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:15:05 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	execute_philosophers(t_program *data)
 
 	first = data->sphilo;
 	i = 0;
-	//pthread_mutex_lock(&(data->mute));
+	pthread_mutex_lock(&(data->mute));
 	while (data->num_philo > i)
 	{
 		pthread_create(&data->thread[i], NULL, worker, (void *)data);
@@ -56,6 +56,6 @@ void	execute_philosophers(t_program *data)
 		i++;
 		data->sphilo = data->sphilo->next;
 	}
-	//pthread_mutex_unlock(&(data->mute));
+	pthread_mutex_unlock(&(data->mute));
 	data->sphilo = first;
 }
