@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/29 13:42:32 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:32:52 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,16 @@ int	main(int argc, char **argv)
 /* 	first = philo;
 	while (philo)
 	{
-		printf("%d\n", philo->philo);
+		printf("lista: %d\n", philo->philo);
 		philo = philo->next;
 	}
 	//init_forks(&philo);
 	philo = first; */
 	execute_philosophers(&data);
+/* 	while (1)
+	{
+		if (data.time_die > ft_time())
+	} */
 	free_philos(philo, &data);
 	return (0);
 }

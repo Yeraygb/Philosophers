@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:42:14 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/29 11:48:51 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/03/31 10:49:58 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,9 @@ void	create_node(t_philo **philo, int i)
 void	connect_forks(t_philo *philo)
 {
 	t_philo	*lastnode;
+	t_philo	*firstnode;
 
+	firstnode = philo;
 	lastnode = philo;
 	while (lastnode->next != NULL)
 		lastnode = lastnode->next;
@@ -167,6 +169,7 @@ void	connect_forks(t_philo *philo)
 		philo->next->forkleft = philo->forkright;
 		philo = philo->next;
 	}
+	philo = firstnode;
 	philo->forkleft = lastnode->forkright;
 }
 
