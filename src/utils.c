@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:08:40 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/29 12:32:24 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:31:17 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ void	free_philos(t_philo *philo, t_program *data)
 	{
 		tmp = philo;
 		philo = philo->next;
-		//pthread_mutex_destroy(&tmp->forkleft);
 		pthread_mutex_destroy(&tmp->forkright);
 		free(tmp);
 	}
+	pthread_mutex_destroy(&data->mute);
+	pthread_mutex_destroy(&data->print);
 }
 
 void	ft_bzero(void *s, size_t n)

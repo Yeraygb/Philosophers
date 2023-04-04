@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/03/29 13:02:29 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/04 11:28:44 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_program
 	int				time_eat;
 	int				time_sleep;
 	int				num_times_eat;
+	int				num_eated;
 	long long		s_time;
 	struct timeval	start_time;
 	t_philo			*sphilo;
@@ -69,5 +70,6 @@ void		connect_forks(t_philo *philo);
 
 void		execute_philosophers(t_program *data);
 void		*worker(void *arg);
+void		check_philo_die(t_program *data, t_philo *philo);
 
 #endif
