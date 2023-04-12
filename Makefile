@@ -6,13 +6,14 @@
 #    By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 13:39:06 by ygonzale          #+#    #+#              #
-#    Updated: 2023/03/31 13:33:14 by ygonzale         ###   ########.fr        #
+#    Updated: 2023/04/12 12:29:20 by ygonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philosophers
 SRC		=	philosophers.c \
 			src/utils.c \
+			src/utils2.c \
 			src/linked_list.c \
 			src/create_pthread.c 
 

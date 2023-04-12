@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/04 13:37:03 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/12 12:47:58 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int	get_arguments(t_program *data, char **argv)
 		i++;
 	}
 	pthread_mutex_init(&data->print, NULL);
-/* 	pthread_mutex_init(&data->eat, NULL);
-	pthread_mutex_init(&data->dead, NULL);
-	pthread_mutex_init(&data->sleep, NULL); */
 	pthread_mutex_init(&data->mute, NULL);
 	data->num_philo = ft_atoi(argv[1]);
 	data->time_die = ft_atoi(argv[2]);
@@ -44,7 +41,6 @@ int	main(int argc, char **argv)
 {
 	t_philo			*philo;
 	t_program		data;
-	//t_philo			*first;
 
 	if (argc < 4 || argc > 5)
 		return (0);
@@ -56,16 +52,7 @@ int	main(int argc, char **argv)
 		return (0);
 	philo = create_philoshoper(&data);
 	data.sphilo = philo;
-/* 	first = philo;
-	while (philo)
-	{
-		printf("lista: %d\n", philo->philo);
-		philo = philo->next;
-	}
-	//init_forks(&philo);
-	philo = first; */
 	execute_philosophers(&data);
-	check_philo_die(&data, philo);
 	free_philos(philo, &data);
 	return (0);
 }
