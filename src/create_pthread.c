@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/12 13:52:09 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:58:37 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	process_eating(t_program *data)
 	pthread_mutex_unlock(&data->sphilo->forkright);
 	pthread_mutex_unlock(&data->sphilo->forkleft);
 }
-
 
 void	*worker(void *arg)
 {
