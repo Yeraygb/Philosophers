@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/12 12:48:35 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:30:31 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ void	process_eating(t_program *data)
 	pthread_mutex_lock(&(data->print));
 	printf("%lld, %d, is eating\n", \
 		ft_time(data->start_time), data->sphilo->philo);
+	data->sphilo->time_have_eaten++;
 	pthread_mutex_unlock(&(data->print));
 	pthread_mutex_unlock(&data->sphilo->forkright);
 	pthread_mutex_unlock(&data->sphilo->forkleft);
 }
 
-void	check_philo_die(t_program *data, t_philo *philo)
+/* void	check_philo_die(t_program *data, t_philo *philo)
 {
 	data->num_eated = 0;
 	while (1)
@@ -46,7 +47,7 @@ void	check_philo_die(t_program *data, t_philo *philo)
 		else if (data->num_eated >= data->num_times_eat)
 			break ;
 	}
-}
+} */
 
 void	*worker(void *arg)
 {

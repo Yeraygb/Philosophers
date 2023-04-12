@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/12 12:47:49 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:18:20 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_philo
 	int				philo;
 	int				eat;
 	long long		time_eat;
+	int				time_have_eaten;
 	pthread_mutex_t	forkright;
 	pthread_mutex_t	forkleft;
 	struct s_philo	*next;
