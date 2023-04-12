@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/12 15:07:32 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:09:27 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	execute_philosophers(t_program *data)
 	while (data->num_philo > i)
 	{
 		pthread_mutex_lock(&(data->print));
-		pthread_create(&data->thread[i], NULL, worker, &data);
+		pthread_create(&data->thread[i], NULL, worker, data);
 		pthread_detach(data->thread[i]);
 		pthread_mutex_lock(&(data->print));
 		i++;
