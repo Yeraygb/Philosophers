@@ -6,11 +6,27 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/12 13:30:31 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:52:09 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philosophers.h"
+
+/* void	check_philo_die(t_program *data, t_philo *philo)
+{
+	data->num_eated = 0;
+	while (1)
+	{
+		if (data->time_die > ft_time(data->start_time))
+		{
+			pthread_mutex_lock(&(data->print));
+			printf("%lld, %d is dead\n", ft_time(data->start_time), philo->philo);
+			break ;
+		}
+		else if (data->num_eated >= data->num_times_eat)
+			break ;
+	}
+} */
 
 void	process_eating(t_program *data)
 {
@@ -33,21 +49,6 @@ void	process_eating(t_program *data)
 	pthread_mutex_unlock(&data->sphilo->forkleft);
 }
 
-/* void	check_philo_die(t_program *data, t_philo *philo)
-{
-	data->num_eated = 0;
-	while (1)
-	{
-		if (data->time_die > ft_time(data->start_time))
-		{
-			pthread_mutex_lock(&(data->print));
-			printf("%lld, %d is dead\n", ft_time(data->start_time), philo->philo);
-			break ;
-		}
-		else if (data->num_eated >= data->num_times_eat)
-			break ;
-	}
-} */
 
 void	*worker(void *arg)
 {
@@ -96,6 +97,7 @@ void	execute_philosophers(t_program *data)
 		data->sphilo = data->sphilo->next;
 		pthread_mutex_unlock(&(data->print));
 	}
+	pthread_mutex_unlock(&(data->mute));
 	pthread_mutex_unlock(&(data->print));
 	data->sphilo = first;
 }
