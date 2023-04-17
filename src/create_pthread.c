@@ -12,50 +12,52 @@
 
 #include "../include/philosophers.h"
 
-void	process_eating(t_program *data)
+void	process_eating(t_program *data, t_philo *philo)
 {
 	pthread_mutex_lock(&(data->print));
-	pthread_mutex_lock(&data->sphilo->forkleft);
+	pthread_mutex_lock(&philo->forkleft);
 	printf("%lld, %d, has taken a fork\n", \
-		ft_time(data->start_time), data->sphilo->philo);
+		ft_time(data->start_time), philo->philo);
 	pthread_mutex_unlock(&(data->print));
-	pthread_mutex_lock(&data->sphilo->forkright);
+	pthread_mutex_lock(&philo->forkright);
 	pthread_mutex_lock(&(data->print));
 	printf("%lld, %d, has taken a fork\n", \
-		ft_time(data->start_time), data->sphilo->philo);
+		ft_time(data->start_time), philo->philo);
 	pthread_mutex_unlock(&(data->print));
 	pthread_mutex_lock(&(data->print));
 	printf("%lld, %d, is eating\n", \
-		ft_time(data->start_time), data->sphilo->philo);
-	data->sphilo->time_have_eaten++;
+		ft_time(data->start_time), philo->philo);
+	philo->time_have_eaten++;
 	pthread_mutex_unlock(&(data->print));
-	pthread_mutex_unlock(&data->sphilo->forkright);
-	pthread_mutex_unlock(&data->sphilo->forkleft);
+	pthread_mutex_unlock(&philo->forkright);
+	pthread_mutex_unlock(&philo->forkleft);
 }
 
 void	*worker(void *arg)
 {
 	t_program	*data;
+	t_philo		*philo;
 
 	data = (t_program *) arg;
-	//pthread_mutex_unlock(&(data->print));
+	philo = data->sphilo;
+	pthread_mutex_unlock(&(data->print));
 	pthread_mutex_lock(&(data->mute));
-	data->sphilo->time_eat = ft_time(data->start_time) + data->time_die;
+	philo->time_eat = ft_time(data->start_time) + data->time_die;
 	pthread_mutex_unlock(&(data->mute));
-	if (data->sphilo->philo % 2)
+	if (philo->philo % 2)
 		ft_msleep(data->time_eat -20, data->num_philo);
-	printf("aa->>>%d\n", data->sphilo->philo);
+	//printf("aa->>>%d\n", data->sphilo->philo);
 	while (1)
 	{
-		process_eating(data);
+		process_eating(data, philo);
 		pthread_mutex_lock(&(data->print));
 		printf("%lld, %d, is sleeping\n", \
-			ft_time(data->start_time), data->sphilo->philo);
+			ft_time(data->start_time), philo->philo);
 		pthread_mutex_unlock(&(data->print));
 		ft_msleep(data->time_sleep, data->num_philo);
 		pthread_mutex_lock(&(data->print));
 		printf("%lld, %d, is thinking\n", \
-			ft_time(data->start_time), data->sphilo->philo);
+			ft_time(data->start_time), philo->philo);
 		pthread_mutex_unlock(&(data->print));
 	}
 	return (NULL);
@@ -71,10 +73,10 @@ void	execute_philosophers(t_program *data)
 	pthread_mutex_lock(&data->mute);
 	while (data->num_philo > i)
 	{
-		//pthread_mutex_lock(&(data->print));
+		pthread_mutex_lock(&(data->print));
 		pthread_create(&data->thread[i], NULL, worker, data);
 		pthread_detach(data->thread[i]);
-		//pthread_mutex_lock(&(data->print));
+		pthread_mutex_lock(&(data->print));
 		data->sphilo = data->sphilo->next;
 		i++;
 		pthread_mutex_unlock(&(data->print));

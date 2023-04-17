@@ -62,6 +62,9 @@ int	main(int argc, char **argv)
 	data.sphilo = first; */
 	execute_philosophers(&data);
 	//data.sphilo = first;
+	while (1){
+	}
 	free_philos(philo, &data);
+	
 	return (0);
 }
