@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:31:39 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/12 15:00:42 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/17 11:58:44 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,13 @@ int	ft_msleep(long milisecons, int num_philos)
 
 int	check_eats(t_philo philo, t_program data)
 {
-	if (data.num_times_eat == -1 && data.num_times_eat == data.num_philo)
-		return (1);
-	if (data.num_times_eat > -1 && data.num_times_eat == philo.time_have_eaten)
-		return (1);
-	return (0);
+	while (1)
+	{
+		if (data.num_times_eat == -1 && philo.time_have_eaten == data.num_philo)
+			return (1);
+		if (data.num_times_eat > -1 && \
+			data.num_times_eat == philo.time_have_eaten)
+			return (1);
+		return (0);
+	}
 }
