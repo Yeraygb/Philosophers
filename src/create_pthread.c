@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/17 12:02:30 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/17 12:58:00 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	process_eating(t_program *data)
 {
+	//printf("%d\n", data->sphilo->philo);
 	pthread_mutex_lock(&(data->print));
 	pthread_mutex_lock(&data->sphilo->forkleft);
 	printf("%lld, %d, has taken a fork\n", \
@@ -36,16 +37,17 @@ void	process_eating(t_program *data)
 void	*worker(void *arg)
 {
 	t_program	*data;
-	t_philo		*philo;
+	//t_philo		*philo;
 
 	data = (t_program *) arg;
-	philo = data->sphilo;
-	pthread_mutex_unlock(&(data->print));
+	//philo = data->sphilo;
+	//pthread_mutex_unlock(&(data->print));
 	pthread_mutex_lock(&(data->mute));
 	data->sphilo->time_eat = ft_time(data->start_time) + data->time_die;
 	pthread_mutex_unlock(&(data->mute));
 	if (data->sphilo->philo % 2)
 		ft_msleep(data->time_eat -20, data->num_philo);
+	printf("aa->>>%d\n", data->sphilo->philo);
 	while (1)
 	{
 		process_eating(data);
@@ -68,16 +70,22 @@ void	execute_philosophers(t_program *data)
 	t_philo	*first;
 
 	first = data->sphilo;
+/* 	while (data->sphilo)
+	{
+		printf("id del filosofo dentro de los hilos %d\n", data->sphilo->philo);
+		data->sphilo = data->sphilo->next;
+	} */
 	i = 0;
 	pthread_mutex_lock(&data->mute);
 	while (data->num_philo > i)
 	{
-		pthread_mutex_lock(&(data->print));
+		//printf("%d\n", data->sphilo->philo);
+		//pthread_mutex_lock(&(data->print));
 		pthread_create(&data->thread[i], NULL, worker, data);
 		pthread_detach(data->thread[i]);
-		pthread_mutex_lock(&(data->print));
-		i++;
+		//pthread_mutex_lock(&(data->print));
 		data->sphilo = data->sphilo->next;
+		i++;
 		pthread_mutex_unlock(&(data->print));
 	}
 	pthread_mutex_unlock(&(data->mute));
