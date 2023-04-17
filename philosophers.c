@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 {
 	t_philo			*philo;
 	t_program		data;
-	t_philo			*first;
+	//t_philo			*first;
 
 	if (argc < 4 || argc > 5)
 		return (0);
@@ -53,13 +53,13 @@ int	main(int argc, char **argv)
 		return (0);
 	philo = create_philoshoper(&data);
 	data.sphilo = philo;
-	first = data.sphilo;
+/* 	first = data.sphilo;
 	while (data.sphilo)
 	{
 		printf("id del filosofo %d\n", data.sphilo->philo);
 		data.sphilo = data.sphilo->next;
 	}
-	data.sphilo = first;
+	data.sphilo = first; */
 	execute_philosophers(&data);
 	//data.sphilo = first;
 	free_philos(philo, &data);

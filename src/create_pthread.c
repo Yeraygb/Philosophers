@@ -14,7 +14,6 @@
 
 void	process_eating(t_program *data)
 {
-	//printf("%d\n", data->sphilo->philo);
 	pthread_mutex_lock(&(data->print));
 	pthread_mutex_lock(&data->sphilo->forkleft);
 	printf("%lld, %d, has taken a fork\n", \
@@ -37,10 +36,8 @@ void	process_eating(t_program *data)
 void	*worker(void *arg)
 {
 	t_program	*data;
-	//t_philo		*philo;
 
 	data = (t_program *) arg;
-	//philo = data->sphilo;
 	//pthread_mutex_unlock(&(data->print));
 	pthread_mutex_lock(&(data->mute));
 	data->sphilo->time_eat = ft_time(data->start_time) + data->time_die;
@@ -70,16 +67,10 @@ void	execute_philosophers(t_program *data)
 	t_philo	*first;
 
 	first = data->sphilo;
-/* 	while (data->sphilo)
-	{
-		printf("id del filosofo dentro de los hilos %d\n", data->sphilo->philo);
-		data->sphilo = data->sphilo->next;
-	} */
 	i = 0;
 	pthread_mutex_lock(&data->mute);
 	while (data->num_philo > i)
 	{
-		//printf("%d\n", data->sphilo->philo);
 		//pthread_mutex_lock(&(data->print));
 		pthread_create(&data->thread[i], NULL, worker, data);
 		pthread_detach(data->thread[i]);
