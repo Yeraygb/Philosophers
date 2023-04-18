@@ -71,5 +71,6 @@ void		execute_philosophers(t_program *data);
 void		*worker(void *arg);
 void		check_philo_die(t_program *data, t_philo *philo);
 int			ft_msleep(long milisecons, int num_philos);
+int			mysleep(t_program data)
 
 #endif

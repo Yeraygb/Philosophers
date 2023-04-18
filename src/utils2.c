@@ -13,7 +13,7 @@
 #include "../include/philosophers.h"
 #include <sys/time.h>
 
-/* int	mysleep(t_program data)
+int	mysleep(t_program data)
 {
 	struct timeval	time;
 
@@ -21,7 +21,7 @@
 	if (data.time_die > time)
 		usleep(2 * data.num_philo);
 	return (0);
-} */
+}
 
 int	ft_msleep(long milisecons, int num_philos)
 {
