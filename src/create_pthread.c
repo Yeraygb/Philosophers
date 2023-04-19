@@ -27,6 +27,7 @@ void	process_eating(t_program *data, t_philo *philo)
 	pthread_mutex_lock(&(data->print));
 	printf("%lld, %d, is eating\n", \
 		ft_time(data->start_time), philo->philo);
+	mysleep(data->time_eat, data);
 	philo->time_have_eaten++;
 	pthread_mutex_unlock(&(data->print));
 	pthread_mutex_unlock(&philo->forkright);
@@ -45,8 +46,7 @@ void	*worker(void *arg)
 	philo->time_eat = ft_time(data->start_time) + data->time_die;
 	pthread_mutex_unlock(&(data->mute));
 	if (philo->philo % 2)
-		ft_msleep(data->time_eat -20, data->num_philo);
-	//printf("aa->>>%d\n", data->sphilo->philo);
+		mysleep(60, data);
 	while (1)
 	{
 		process_eating(data, philo);
@@ -54,7 +54,7 @@ void	*worker(void *arg)
 		printf("%lld, %d, is sleeping\n", \
 			ft_time(data->start_time), philo->philo);
 		pthread_mutex_unlock(&(data->print));
-		ft_msleep(data->time_sleep, data->num_philo);
+		mysleep(data->time_sleep, data);
 		pthread_mutex_lock(&(data->print));
 		printf("%lld, %d, is thinking\n", \
 			ft_time(data->start_time), philo->philo);

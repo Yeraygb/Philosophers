@@ -27,6 +27,8 @@ int	get_arguments(t_program *data, char **argv)
 	pthread_mutex_init(&data->print, NULL);
 	pthread_mutex_init(&data->mute, NULL);
 	data->num_philo = ft_atoi(argv[1]);
+	if (data->num_philo > 200)
+		return (0);
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
@@ -61,10 +63,10 @@ int	main(int argc, char **argv)
 	}
 	data.sphilo = first; */
 	execute_philosophers(&data);
+	check_states(philo, &data);
 	//data.sphilo = first;
-	while (1){
-	}
+/* 	while (1){
+	} */
 	free_philos(philo, &data);
-	
 	return (0);
 }

@@ -13,35 +13,37 @@
 #include "../include/philosophers.h"
 #include <sys/time.h>
 
-int	mysleep(t_program data)
+int	mysleep(int time_state, t_program *data)
 {
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	if (data.time_die > time)
-		usleep(2 * data.num_philo);
+	while (time_state > ft_time(time))
+		usleep(2 * data->num_philo);
 	return (0);
 }
 
-int	ft_msleep(long milisecons, int num_philos)
+void	check_states(t_philo *philo, t_program *data)
 {
-	struct timeval	timer;
-
-	gettimeofday(&timer, NULL);
-	while (milisecons > ft_time(timer))
-		usleep(2 * num_philos);
-	return (0);
-}
-
-int	check_eats(t_philo philo, t_program data)
-{
+	/* (void) philo;
+	(void) data; */
+	//printf("entra\n");
 	while (1)
 	{
-		if (data.num_times_eat == -1 && philo.time_have_eaten == data.num_philo)
-			return (1);
-		if (data.num_times_eat > -1 && \
-			data.num_times_eat == philo.time_have_eaten)
-			return (1);
-		return (0);
+		//printf("entra al while\n");
+		if (data->num_times_eat == -1 && philo->time_have_eaten == data->num_philo)
+		{
+			printf("num_times_eat: %d\n", data->num_times_eat);
+			printf("philo->time_have_eaten: %d\n", philo->time_have_eaten);
+			printf("data->num_philo: %d\n", data->num_philo);
+			printf("entra en el primero\n");
+			break ;
+		}
+		if (data->num_times_eat > -1 && \
+			data->num_times_eat == philo->time_have_eaten)
+		{
+			printf("entra en el segundo\n");
+			break ;
+		}
 	}
 }
