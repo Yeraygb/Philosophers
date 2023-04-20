@@ -6,12 +6,14 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/17 12:31:05 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 10:36:32 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philosophers.h"
 #include <sys/time.h>
+
+//usleep(2 * data->num_philo);
 
 int	get_arguments(t_program *data, char **argv)
 {
@@ -70,3 +72,4 @@ int	main(int argc, char **argv)
 	free_philos(philo, &data);
 	return (0);
 }
+

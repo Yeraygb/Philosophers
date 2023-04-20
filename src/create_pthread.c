@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/17 12:58:00 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:50:27 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	process_eating(t_program *data, t_philo *philo)
 		ft_time(data->start_time), philo->philo);
 	mysleep(data->time_eat, data);
 	philo->time_have_eaten++;
+	data->has_eaten = ft_time(data->start_time);
 	pthread_mutex_unlock(&(data->print));
 	pthread_mutex_unlock(&philo->forkright);
 	pthread_mutex_unlock(&philo->forkleft);

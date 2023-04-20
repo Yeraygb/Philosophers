@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/12 13:18:20 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:15:45 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_philo
 	int				eat;
 	long long		time_eat;
 	int				time_have_eaten;
+	long long		has_eaten;
 	pthread_mutex_t	forkright;
 	pthread_mutex_t	forkleft;
 	struct s_philo	*next;
@@ -43,6 +44,7 @@ typedef struct s_program
 	int				num_eated;
 	long long		s_time;
 	struct timeval	start_time;
+	long long		has_eaten;
 	t_philo			*sphilo;
 	pthread_t		*thread;
 	pthread_mutex_t	mute;
@@ -69,8 +71,7 @@ void		connect_forks(t_philo *philo);
 
 void		execute_philosophers(t_program *data);
 void		*worker(void *arg);
-void		check_philo_die(t_program *data, t_philo *philo); // mirar para borrar
-int			mysleep(int time_state, t_program *data);
+int			mysleep(int time_state, t_program *data); // mirar t_program para borrar
 void		check_states(t_philo *philo, t_program *data);
 
 
