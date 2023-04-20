@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 11:50:27 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:14:17 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	process_eating(t_program *data, t_philo *philo)
 {
-	pthread_mutex_lock(&(data->print));
 	pthread_mutex_lock(&philo->forkleft);
+	pthread_mutex_lock(&(data->print));
 	printf("%lld, %d, has taken a fork\n", \
 		ft_time(data->start_time), philo->philo);
 	pthread_mutex_unlock(&(data->print));
@@ -27,10 +27,10 @@ void	process_eating(t_program *data, t_philo *philo)
 	pthread_mutex_lock(&(data->print));
 	printf("%lld, %d, is eating\n", \
 		ft_time(data->start_time), philo->philo);
-	mysleep(data->time_eat, data);
 	philo->time_have_eaten++;
 	data->has_eaten = ft_time(data->start_time);
 	pthread_mutex_unlock(&(data->print));
+	mysleep(data->time_eat, data);
 	pthread_mutex_unlock(&philo->forkright);
 	pthread_mutex_unlock(&philo->forkleft);
 }
@@ -43,9 +43,9 @@ void	*worker(void *arg)
 	data = (t_program *) arg;
 	philo = data->sphilo;
 	pthread_mutex_unlock(&(data->print));
-	pthread_mutex_lock(&(data->mute));
+/* 	pthread_mutex_lock(&(data->mute));
 	philo->time_eat = ft_time(data->start_time) + data->time_die;
-	pthread_mutex_unlock(&(data->mute));
+	pthread_mutex_unlock(&(data->mute)); */
 	if (philo->philo % 2)
 		mysleep(60, data);
 	while (1)
