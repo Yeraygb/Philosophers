@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:08:40 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 12:46:48 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:42:22 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ long long	ft_time(struct timeval starttime)
 	struct timeval	actual_time;
 
 	gettimeofday(&actual_time, NULL);
-	time = (actual_time.tv_sec * 1000) + (actual_time.tv_usec / 1000) \
-	- (starttime.tv_sec * 1000) + (starttime.tv_usec / 1000);
+/* 	time = (actual_time.tv_sec * 1000) + (actual_time.tv_usec / 1000) \
+	- (starttime.tv_sec * 1000) + (starttime.tv_usec / 1000); */
+	time = (((actual_time.tv_sec - starttime.tv_sec) * 1000) \
+		+ (actual_time.tv_usec - starttime.tv_usec) / 1000);
 	return (time);
 }

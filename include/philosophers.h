@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 11:15:45 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:26:16 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void		connect_forks(t_philo *philo);
 void		execute_philosophers(t_program *data);
 void		*worker(void *arg);
 int			mysleep(int time_state, t_program *data); // mirar t_program para borrar
-void		check_states(t_philo *philo, t_program *data);
+//void		check_states(t_philo *philo, t_program *data);
+void		check_states(t_program *data);
 
 
 #endif

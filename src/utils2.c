@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:31:39 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 13:52:12 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:53:33 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 
 int	mysleep(int time_state, t_program *data)
 {
-	struct timeval	time;
+	//struct timeval	time;
+	long long	time;
 
 	(void)data;
-	gettimeofday(&time, NULL);
-	while (time_state > ft_time(time))
+	time = ft_time(data->start_time);
+	//gettimeofday(&time, NULL);
+	while (time_state > ft_time(data->start_time) - time)
 	{
-		printf(">>>>>>>>>>>>%d\n", time_state);
-		printf(">>>>>>>>>>>>%lld\n", ft_time(time));
+		//printf(">>>>>>>>>>>>%d\n", time_state);
+		//printf(">>>>>>>>>>>>%lld\n", ft_time(time));
 		usleep(250);
 		usleep(250);
 		usleep(250);
@@ -31,11 +33,10 @@ int	mysleep(int time_state, t_program *data)
 	return (0);
 }
 
-void	check_states(t_philo *philo, t_program *data)
+void	check_states(t_program *data)
 {
 	t_program	*aux;
 
-	(void) philo;
 	/* (void) philo;
 	(void) data; */
 	aux = data;
@@ -64,6 +65,7 @@ void	check_states(t_philo *philo, t_program *data)
 				ft_time(aux->start_time), aux->sphilo->philo);
 			break ;
 		}
-		aux->sphilo = aux->sphilo->next;
+		if (aux->sphilo->next)
+			aux->sphilo = aux->sphilo->next;
 	}
 }
