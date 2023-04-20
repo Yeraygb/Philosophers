@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:31:39 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 13:05:53 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:36:30 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ int	mysleep(int time_state, t_program *data)
 	gettimeofday(&time, NULL);
 	while (time_state > ft_time(time))
 	{
-		usleep(150);
-		usleep(150);
-		usleep(150);
-		usleep(150);
+		printf(">>>>>>>>>>>>%d\n", time_state);
+		printf(">>>>>>>>>>>>%lld\n", ft_time(time));
+		usleep(250);
+		usleep(250);
+		usleep(250);
+		usleep(250);
 	}
 	return (0);
 }
