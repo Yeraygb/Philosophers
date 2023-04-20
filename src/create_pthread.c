@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 14:33:59 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:02:11 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	process_eating(t_program *data, t_philo *philo)
 	printf("%lld, %d, is eating\n", \
 		ft_time(data->start_time), philo->philo);
 	philo->time_have_eaten++;
-	data->has_eaten = ft_time(data->start_time);
+	data->sphilo->has_eaten = ft_time(data->start_time);
 	pthread_mutex_unlock(&(data->print));
 	mysleep(data->time_eat, data);
 	pthread_mutex_unlock(&philo->forkright);

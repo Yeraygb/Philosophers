@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:23 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 14:26:16 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:07:44 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct s_program
 	int				num_eated;
 	long long		s_time;
 	struct timeval	start_time;
-	long long		has_eaten;
 	t_philo			*sphilo;
 	pthread_t		*thread;
 	pthread_mutex_t	mute;
