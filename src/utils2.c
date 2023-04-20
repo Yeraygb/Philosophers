@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 13:31:39 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 13:36:30 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:52:12 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ void	check_states(t_philo *philo, t_program *data)
 				ft_time(aux->start_time), aux->sphilo->philo);
 			break ;
 		}
-		//aux->sphilo = aux->sphilo->next;
+		aux->sphilo = aux->sphilo->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:00:27 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 13:18:47 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:42:47 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	*worker(void *arg)
 	data = (t_program *) arg;
 	philo = data->sphilo;
 	pthread_mutex_unlock(&(data->print));
-/* 	pthread_mutex_lock(&(data->mute));
+	/* pthread_mutex_lock(&(data->mute));
 	philo->time_eat = ft_time(data->start_time) + data->time_die;
 	pthread_mutex_unlock(&(data->mute)); */
 	if (philo->philo % 2)
