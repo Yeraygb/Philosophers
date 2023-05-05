@@ -15,16 +15,12 @@
 
 int	mysleep(int time_state, t_program *data)
 {
-	//struct timeval	time;
 	long long	time;
 
 	(void)data;
 	time = ft_time(data->start_time);
-	//gettimeofday(&time, NULL);
 	while (time_state > ft_time(data->start_time) - time)
 	{
-		//printf(">>>>>>>>>>>>%d\n", time_state);
-		//printf(">>>>>>>>>>>>%lld\n", ft_time(time));
 		usleep(250);
 		usleep(250);
 		usleep(250);
@@ -36,9 +32,9 @@ int	mysleep(int time_state, t_program *data)
 void	check_states(t_program *data)
 {
 	t_program	*aux;
+	t_philo		*first;
 
-	/* (void) philo;
-	(void) data; */
+	first = data->sphilo;
 	aux = data;
 	while (1)
 	{
@@ -58,14 +54,14 @@ void	check_states(t_program *data)
 		} */
 		if (ft_time(aux->start_time) - aux->sphilo->has_eaten > (long long)aux->time_die)
 		{
-			printf(">>>>>>>%lld\n", (ft_time(aux->start_time) - aux->sphilo->has_eaten));
-			printf(">>>>>>>%d\n", aux->time_die);
-			//pthread_mutex_lock(&(aux->print));
+			pthread_mutex_lock(&(aux->print));
 			printf("%lld, %d, died\n", \
 				ft_time(aux->start_time), aux->sphilo->philo);
 			break ;
 		}
 		if (aux->sphilo->next)
 			aux->sphilo = aux->sphilo->next;
+		else
+			aux->sphilo = first;
 	}
 }

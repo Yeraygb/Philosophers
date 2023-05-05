@@ -30,7 +30,7 @@ typedef struct s_philo
 	int				time_have_eaten;
 	long long		has_eaten;
 	pthread_mutex_t	forkright;
-	pthread_mutex_t	forkleft;
+	pthread_mutex_t	*forkleft;
 	struct s_philo	*next;
 }	t_philo;
 

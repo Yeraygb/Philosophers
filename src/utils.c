@@ -18,6 +18,8 @@ void	free_philos(t_philo *philo, t_program *data)
 	t_philo	*tmp;
 
 	free(data->thread);
+	pthread_mutex_destroy(&data->mute);
+	pthread_mutex_destroy(&data->print);
 	while (philo)
 	{
 		tmp = philo;
@@ -25,8 +27,6 @@ void	free_philos(t_philo *philo, t_program *data)
 		pthread_mutex_destroy(&tmp->forkright);
 		free(tmp);
 	}
-	pthread_mutex_destroy(&data->mute);
-	pthread_mutex_destroy(&data->print);
 }
 
 void	ft_bzero(void *s, size_t n)

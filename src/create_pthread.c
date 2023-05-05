@@ -14,7 +14,7 @@
 
 void	process_eating(t_program *data, t_philo *philo)
 {
-	pthread_mutex_lock(&philo->forkleft);
+	pthread_mutex_lock(philo->forkleft);
 	pthread_mutex_lock(&(data->print));
 	printf("%lld, %d, has taken a fork\n", \
 		ft_time(data->start_time), philo->philo);
@@ -28,11 +28,11 @@ void	process_eating(t_program *data, t_philo *philo)
 	printf("%lld, %d, is eating\n", \
 		ft_time(data->start_time), philo->philo);
 	philo->time_have_eaten++;
-	data->sphilo->has_eaten = ft_time(data->start_time);
+	philo->has_eaten = ft_time(data->start_time);
 	pthread_mutex_unlock(&(data->print));
 	mysleep(data->time_eat, data);
 	pthread_mutex_unlock(&philo->forkright);
-	pthread_mutex_unlock(&philo->forkleft);
+	pthread_mutex_unlock(philo->forkleft);
 }
 
 void	*worker(void *arg)

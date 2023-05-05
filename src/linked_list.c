@@ -48,11 +48,11 @@ void	connect_forks(t_philo *philo)
 		lastnode = lastnode->next;
 	while (philo->next != NULL)
 	{
-		philo->next->forkleft = philo->forkright;
+		philo->next->forkleft = &philo->forkright;
 		philo = philo->next;
 	}
 	philo = firstnode;
-	philo->forkleft = lastnode->forkright;
+	philo->forkleft = &lastnode->forkright;
 }
 
 void	create_list(t_philo **philo, int bol, int i)
