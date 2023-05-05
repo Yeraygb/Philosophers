@@ -37,8 +37,8 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -rf philosophers
-	@rm -rf philosophers.dSYM
+	@rm -rf philo
+	@rm -rf philo.dSYM
 
 re: fclean all
 
