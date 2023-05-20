@@ -13,7 +13,6 @@
 #include "include/philosophers.h"
 #include <sys/time.h>
 
-//usleep(2 * data->num_philo);
 
 int	get_arguments(t_program *data, char **argv)
 {
@@ -45,9 +44,8 @@ int	main(int argc, char **argv)
 {
 	t_philo			*philo;
 	t_program		data;
-	//t_philo			*first;
 
-	if (argc < 4 || argc > 5)
+	if (argc < 4 || argc > 6)
 		return (0);
 	if (get_arguments(&data, argv) == 0)
 		return (0);
@@ -57,13 +55,6 @@ int	main(int argc, char **argv)
 		return (0);
 	philo = create_philoshoper(&data);
 	data.sphilo = philo;
-/* 	first = data.sphilo;
-	while (data.sphilo)
-	{
-		printf("id del filosofo %d\n", data.sphilo->philo);
-		data.sphilo = data.sphilo->next;
-	}
-	data.sphilo = first; */
 	execute_philosophers(&data);
 	check_states(&data);
 	mysleep(data.num_philo * 10, &data);

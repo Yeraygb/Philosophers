@@ -43,9 +43,6 @@ void	*worker(void *arg)
 	data = (t_program *) arg;
 	philo = data->sphilo;
 	pthread_mutex_unlock(&(data->print));
-	/* pthread_mutex_lock(&(data->mute));
-	philo->time_eat = ft_time(data->start_time) + data->time_die;
-	pthread_mutex_unlock(&(data->mute)); */
 	if (philo->philo % 2)
 		mysleep(60, data);
 	while (1)
@@ -71,7 +68,6 @@ void	execute_philosophers(t_program *data)
 
 	first = data->sphilo;
 	i = 0;
-	//pthread_mutex_lock(&data->mute);
 	while (data->num_philo > i)
 	{
 		pthread_mutex_lock(&(data->print));

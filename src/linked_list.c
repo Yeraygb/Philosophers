@@ -79,24 +79,3 @@ t_philo	*create_philoshoper(t_program *data)
 	}
 	return (philo);
 }
-
-/* void	create_philoshoper(t_philo **philo, t_program *data)
-{
-	int		i;
-	int		boleana;
- 	t_philo	*philo;
-
-	philo = NULL; 
-	i = 0;
-	boleana = 0;
- 	philo = NULL;
-	philo = ft_calloc(1, sizeof(t_philo));
-	if (!philo
-		return (0); 
-	while (data->num_philo > i)
-	{
-		create_list(philo, boleana, i);
-		boleana++;
-		i++;
-	}
-} */

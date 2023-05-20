@@ -38,20 +38,6 @@ void	check_states(t_program *data)
 	aux = data;
 	while (1)
 	{
-		/* if (data->num_times_eat == -1 && philo->time_have_eaten == data->num_philo)
-		{
-			printf("num_times_eat: %d\n", data->num_times_eat);
-			printf("philo->time_have_eaten: %d\n", philo->time_have_eaten);
-			printf("data->num_philo: %d\n", data->num_philo);
-			printf("entra en el primero\n");
-			break ;
-		}
-		if (data->num_times_eat != -1 && \
-			data->num_times_eat == philo->time_have_eaten)
-		{
-			printf("entra en el segundo\n");
-			break ;
-		} */
 		if (ft_time(aux->start_time) - aux->sphilo->has_eaten > (long long)aux->time_die)
 		{
 			pthread_mutex_lock(&(aux->print));
@@ -59,6 +45,8 @@ void	check_states(t_program *data)
 				ft_time(aux->start_time), aux->sphilo->philo);
 			break ;
 		}
+		if (data->num_times_eat > -1 && (aux->sphilo->time_have_eaten == data->num_times_eat))
+			break;
 		if (aux->sphilo->next)
 			aux->sphilo = aux->sphilo->next;
 		else
