@@ -33,7 +33,9 @@ void	check_states(t_program *data)
 {
 	t_program	*aux;
 	t_philo		*first;
+	int 		eats;
 
+	eats = 0;
 	first = data->sphilo;
 	aux = data;
 	while (1)
@@ -45,8 +47,10 @@ void	check_states(t_program *data)
 				ft_time(aux->start_time), aux->sphilo->philo);
 			break ;
 		}
-		if (data->num_times_eat > -1 && (aux->sphilo->time_have_eaten == data->num_times_eat))
-			break;
+		if (data->num_times_eat > -1 && (aux->sphilo->time_have_eaten > data->num_times_eat))
+			eats++;
+		if (eats == aux->num_philo)
+			break ;
 		if (aux->sphilo->next)
 			aux->sphilo = aux->sphilo->next;
 		else
