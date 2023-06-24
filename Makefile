@@ -6,7 +6,7 @@
 #    By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/29 13:39:06 by ygonzale          #+#    #+#              #
-#    Updated: 2023/04/20 15:15:42 by ygonzale         ###   ########.fr        #
+#    Updated: 2023/05/20 11:04:19 by ygonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,5 @@ fclean: clean
 	@rm -rf philo.dSYM
 
 re: fclean all
-
-commit: fclean
-	git add .
-	git commit -m "save"
-	git push
 
 .PHONY = all clean fclean re

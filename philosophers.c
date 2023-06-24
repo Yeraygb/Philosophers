@@ -6,13 +6,12 @@
 /*   By: ygonzale <ygonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:06:16 by ygonzale          #+#    #+#             */
-/*   Updated: 2023/04/20 14:44:59 by ygonzale         ###   ########.fr       */
+/*   Updated: 2023/06/24 10:22:42 by ygonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philosophers.h"
 #include <sys/time.h>
-
 
 int	get_arguments(t_program *data, char **argv)
 {
@@ -45,7 +44,7 @@ int	main(int argc, char **argv)
 	t_philo			*philo;
 	t_program		data;
 
-	if (argc < 4 || argc > 6)
+	if (argc < 5 || argc > 6)
 		return (0);
 	if (get_arguments(&data, argv) == 0)
 		return (0);
@@ -58,7 +57,6 @@ int	main(int argc, char **argv)
 	execute_philosophers(&data);
 	check_states(&data);
 	mysleep(data.num_philo * 10, &data);
-	//check_states(philo, &data);
 	free_philos(philo, &data);
 	return (0);
 }
